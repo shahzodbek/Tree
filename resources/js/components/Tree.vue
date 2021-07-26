@@ -1,9 +1,13 @@
 <template>
     <load :status="loading" @upload="uploadTree">
+        <div class="example-description" >
+            <input type="text" placeholder="Type to filter..." v-model="filter" class="filter-field form-control">
+        </div>
         <liquor-tree
             :data="tree"
             :options="options"
             ref="tree"
+            :filter="filter"
             @node:dragging:finish="logDragFinish"
         >
             <div slot-scope="{ node }" class="node-container">
@@ -31,7 +35,8 @@ export default {
                 checkbox: false,
                 dnd: true
             },
-            loading: 'load'
+            loading: 'load',
+            filter: ''
         }
     },
     components: {
